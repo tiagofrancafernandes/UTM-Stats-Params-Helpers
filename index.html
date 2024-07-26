@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <a
+            href="./index.html?utm_source=my_source&utm_medium=reference&utm_id=123456&utm_content=789145&utm_term=7845&utm_campaign=123456"
+        >Reload width fake UTM params</a>
+    </div>
+
+    <br>
+
+    <div>
+        <a
+            class="botao-compra"
+            href="https://tiagofranca.com?some_key=my_param"
+            target="_blank"
+        >Demo Buy Link 1</a>
+        <br>
+        <a
+            class="buy-link-2"
+            href="https://tiagofranca.com?some_key=my_param"
+            target="_blank"
+        >Demo Buy Link 2</a>
+    </div>
+
+    <h4>Current URL params</h4>
+    <div>
+        <pre data-item="pre_search_data">{}</pre>
+    </div>
+
+    <!-- <script src="./script.js?init&useKeys=utm_term&targetQueries=.botao-compra"></script> -->
+    <!-- <script src="./script.js?init&targetQueries=.botao-compra"></script> -->
+    <!-- <script src="./script.js?init=false&targetQueries=.botao-compra"></script> -->
+    <script src="./script.js" defer></script>
+
+    <script>
+        /*
+            // targetQueries usage:
+            targetQueries = '.botao-compra';
+            targetQueries = ['.botao-compra'];
+
+            // useKeys usage:
+            useKeys = 'utm_term,key2';
+            useKeys = ['utm_term', 'key2'];
+        */
+
+        globalThis.targetQueries = ['.botao-compra', 'a.buy-link-2'];
+        globalThis.useKeys = [
+            'utm_source',
+            'utm_medium',
+            'utm_id',
+            'utm_content',
+            'utm_term',
+            'utm_campaign',
+        ];
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let preSearchData = document.querySelector('[data-item="pre_search_data"]');
+
+            if (preSearchData) {
+                preSearchData.innerHTML = JSON.stringify(
+                    globalThis?.UrlHelpers?.currentURLSearchParamsAsObject,
+                    null,
+                    4,
+                );
+            }
+        });
+    </script>
+</body>
+</html>
