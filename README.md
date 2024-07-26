@@ -1,5 +1,8 @@
 # UTM Stats Params Helpers
 
+### [`script.js` from GitHub Pages](https://tiagofrancafernandes.github.io/UTM-Stats-Params-Helpers/script.js)
+### [Demo from GitHub Pages](https://tiagofrancafernandes.github.io/UTM-Stats-Params-Helpers)
+
 ## Usage
 
 ### Load script file
@@ -38,3 +41,27 @@ globalThis.useKeys = [
 > encodeURI(globalThis.targetQueries);
 > encodeURI('a[href*="ti"]') // a%5Bhref*=%22ti%22%5D
 > ```
+
+
+#### Helpers
+
+```js
+// UrlHelpers
+
+UrlHelpers.currentURL: // URL
+UrlHelpers.currentURLSearchParams: // URLSearchParams
+UrlHelpers.currentURLSearchParamsAsArray: // Array
+UrlHelpers.currentURLSearchParamsAsObject: // Object
+UrlHelpers.currentURLSearchParamsEntries: // URLSearchParams Iterator
+UrlHelpers.selfScript // HTMLScriptElement
+
+UrlHelpers.selfScriptURL: // URL
+UrlHelpers.selfScriptURLParams: // URLSearchParams
+UrlHelpers.selfScriptURLParamsAsArray: // Array
+UrlHelpers.selfScriptURLParamsAsObject: // Object
+UrlHelpers.selfScriptURLParamsEntries: // URLSearchParams Iterator
+
+UrlHelpers.tryCreateUrl // Function <null|URL>
+UrlHelpers.targetQueries // Array
+UrlHelpers.useKeys // Array
+```
