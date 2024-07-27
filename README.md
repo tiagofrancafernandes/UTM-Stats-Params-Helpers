@@ -78,6 +78,7 @@ globalThis.defaultUrlParamValues = {
 
 #### Helpers
 
+* **`UrlHelpers`**
 ```js
 globalThis.updateLinks // Function <void>
 globalThis.UrlHelpers // Object
@@ -98,4 +99,15 @@ UrlHelpers.selfScriptURLParamsEntries: // URLSearchParams Iterator
 UrlHelpers.tryCreateUrl // Function <null|URL>
 UrlHelpers.targetQueries // Array
 UrlHelpers.useKeys // Array
+```
+
+* **`LocalStorageHelper`**
+```js
+let linkStorage = new LocalStorageHelper('link_tags');
+let linkStorage2 = new LocalStorageHelper('other_storage');
+
+linkStorage.setItem('abc', 123);
+let abc = linkStorage.getOrSet('abc', 789); // 123
+let abc2 = linkStorage2.getOrSet('abc', 789); // 789
+console.log(linkStorage.toJson(), abc, abc2);
 ```
