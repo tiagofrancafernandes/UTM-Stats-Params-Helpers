@@ -5,6 +5,9 @@
 
 ## Usage
 
+* See demo file [`index.html`](./index.html)
+
+
 ### Load script file
 
 * **With setup by global variables**
@@ -25,6 +28,14 @@ globalThis.useKeys = [
     'utm_term',
     'utm_campaign',
 ];
+
+// (Optional) default value when the parameter is not passed via URL
+globalThis.defaultUrlParamValues = {
+    // utm_source: 123, // Static value
+    get utm_source() { // Dinamic value (useful like to use localStorage values)
+        return 'abcjhg';
+    },
+};
 </script>
 ```
 
@@ -46,7 +57,8 @@ globalThis.useKeys = [
 #### Helpers
 
 ```js
-// UrlHelpers
+globalThis.updateLinks // Function <void>
+globalThis.UrlHelpers // Object
 
 UrlHelpers.currentURL: // URL
 UrlHelpers.currentURLSearchParams: // URLSearchParams

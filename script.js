@@ -136,8 +136,6 @@
                 return;
             }
 
-            console.log('globalThis.targetQueries', globalThis.targetQueries);
-
             globalThis.targetQueries.forEach(selector => {
                 document.querySelectorAll(selector).forEach(element => {
                     let tagName = element.tagName;
@@ -151,9 +149,29 @@
                             return;
                         }
 
-                        for(let item of UrlHelpers?.currentURLSearchParams?.entries()) {
+                        let defaultUrlParams = globalThis.defaultUrlParamValues || {};
+
+                        let urlEntriesData = () => {
+                            if (
+                                !defaultUrlParams
+                                || typeof defaultUrlParams !== 'object'
+                                || Array.isArray(defaultUrlParams)
+                            ) {
+                                defaultUrlParams = {};
+                            }
+
+                            return [
+                                ...Object.entries(defaultUrlParams),
+                                ...UrlHelpers?.currentURLSearchParamsAsArray,
+                            ];
+                        }
+
+                        for(let item of urlEntriesData()) {
                             let [key, value] = item;
-                            if (globalThis.useKeys?.includes(key)) {
+                            if (
+                                globalThis.useKeys?.includes(key)
+                                || defaultUrlParams.hasOwnProperty(key)
+                            ) {
                                 linkHrefUQP?.set(key, value);
                             }
                         }

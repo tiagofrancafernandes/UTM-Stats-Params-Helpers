@@ -26,6 +26,10 @@
             href="https://tiagofranca.com?some_key=my_param"
             target="_blank"
         >Demo Buy Link 2</a>
+        <a
+            href="https://tiagofranca.com?some_key=param3"
+            target="_blank"
+        >Demo Buy Link 3</a>
     </div>
 
     <h4>Current URL params</h4>
@@ -36,6 +40,7 @@
     <!-- <script src="./script.js?init&useKeys=utm_term&targetQueries=.botao-compra"></script> -->
     <!-- <script src="./script.js?init&targetQueries=.botao-compra"></script> -->
     <!-- <script src="./script.js?init=false&targetQueries=.botao-compra"></script> -->
+    <!-- <script src="./script.js?init&useKeys=utm_term&targetQueries=a%5Bhref*=%22param3%22%5D"></script> -->
     <script src="./script.js" defer></script>
 
     <script>
@@ -49,7 +54,11 @@
             useKeys = ['utm_term', 'key2'];
         */
 
-        globalThis.targetQueries = ['.botao-compra', 'a.buy-link-2'];
+        globalThis.targetQueries = [
+            '.botao-compra',
+            'a.buy-link-2',
+            'a[href*="param3"]', // via URL is 'a%5Bhref*=%22param3%22%5D'
+        ];
         globalThis.useKeys = [
             'utm_source',
             'utm_medium',
@@ -58,6 +67,20 @@
             'utm_term',
             'utm_campaign',
         ];
+
+        // default value when the parameter is not passed via URL or static value (not in useKeys)
+        globalThis.defaultUrlParamValues = {
+            // utm_source: 123, // Static value
+            get utm_source() { // Dinamic value (useful like to use localStorage values)
+                return 'abcjhg';
+            },
+            get fixedValue() { // This value ever will be the same
+                return 'my_value';
+            },
+            get time() { // this value will always be different
+                return (new Date).getTime();
+            },
+        };
 
         document.addEventListener('DOMContentLoaded', (event) => {
             let preSearchData = document.querySelector('[data-item="pre_search_data"]');
