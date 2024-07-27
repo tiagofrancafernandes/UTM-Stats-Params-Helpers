@@ -5,6 +5,28 @@
 
 ## Usage
 
+```html
+<script src="//tiagofrancafernandes.github.io/UTM-Stats-Params-Helpers/script.js" defer></script>
+
+<script>
+globalThis.targetQueries = [ // Selectors of your links
+    // '.botao-compra',
+    // 'a.buy-link-2',
+];
+globalThis.useKeys = [
+    'utm_source',
+    'utm_medium',
+    'utm_id',
+    'utm_content',
+    'utm_term',
+    'utm_campaign',
+];
+```
+
+----
+
+## Docs
+
 * See demo file [`index.html`](./index.html)
 
 
