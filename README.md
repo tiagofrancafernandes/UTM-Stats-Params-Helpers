@@ -8,6 +8,9 @@
 ```html
 <script src="//tiagofrancafernandes.github.io/UTM-Stats-Params-Helpers/script.js" defer></script>
 
+<!-- Optional helpers -->
+<!-- <script src="//tiagofrancafernandes.github.io/UTM-Stats-Params-Helpers/helpers.js" defer></script>-->
+
 <script>
 globalThis.targetQueries = [ // Selectors of your links
     // '.botao-compra',
@@ -55,6 +58,7 @@ globalThis.useKeys = [
 globalThis.defaultUrlParamValues = {
     // utm_source: 123, // Static value
     get utm_source() { // Dinamic value (useful like to use localStorage values)
+        // return (new LocalStorageHelper('link_tags')).getItem('utm_source', 'lp-2024');
         return 'abcjhg';
     },
 };
@@ -109,5 +113,6 @@ let linkStorage2 = new LocalStorageHelper('other_storage');
 linkStorage.setItem('abc', 123);
 let abc = linkStorage.getOrSet('abc', 789); // 123
 let abc2 = linkStorage2.getOrSet('abc', 789); // 789
-console.log(linkStorage.toJson(), abc, abc2);
+let utmTerm = (new LocalStorageHelper('link_tags')).getItem('utm_term', 'site_term');
+console.log(linkStorage.toJson(), abc, abc2, utmTerm);
 ```
